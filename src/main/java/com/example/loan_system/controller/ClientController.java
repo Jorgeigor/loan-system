@@ -1,10 +1,10 @@
-package com.example.loan_system;
+package com.example.loan_system.controller;
 
 import com.example.loan_system.dtos.ClientRequestDTO;
 import com.example.loan_system.dtos.ClientResponseDTO;
 import com.example.loan_system.dtos.LoanResponseDTO;
-import com.example.loan_system.service.ClientService;
-import com.example.loan_system.service.LoanService;
+import com.example.loan_system.services.ClientService;
+import com.example.loan_system.services.LoanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

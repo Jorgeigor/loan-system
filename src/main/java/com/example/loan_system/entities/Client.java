@@ -26,6 +26,6 @@ public class Client {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
-    private List<TypeLoan> typeLoans;
+    private List<LoanType> loanTypes;
 
 }

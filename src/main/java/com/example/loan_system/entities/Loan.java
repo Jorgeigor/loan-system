@@ -4,7 +4,7 @@ import lombok.Data;
 
 
 @Data
-public class Emprestimo {
-    private TypeLoan type;
+public class Loan {
+    private LoanType type;
     private Integer interest_rate;
 }

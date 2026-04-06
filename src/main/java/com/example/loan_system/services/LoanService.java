@@ -1,11 +1,11 @@
-package com.example.loan_system.service;
+package com.example.loan_system.services;
 
 
 import com.example.loan_system.dtos.LoanItemDTO;
 import com.example.loan_system.dtos.LoanResponseDTO;
 import com.example.loan_system.entities.Client;
-import com.example.loan_system.entities.TypeLoan;
-import com.example.loan_system.execptions.LoanDefaultIncome;
+import com.example.loan_system.entities.LoanType;
+import com.example.loan_system.exceptions.NoEligibleLoansException;
 import com.example.loan_system.repositories.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,16 +37,16 @@ public class LoanService {
         boolean locationIsSP = location.compareTo(new String("SP")) == 0;
 
         if(isIncomeUp5000 && !isIncomeDefault) {
-            loanOptionsAprove.add(new LoanItemDTO(TypeLoan.PERSONAL.name(), TypeLoan.PERSONAL.getInterest_rate()));
+            loanOptionsAprove.add(new LoanItemDTO(LoanType.PERSONAL.name(), LoanType.PERSONAL.getInterest_rate()));
         }
         if(isIncomeOver5000){
-            loanOptionsAprove.add(new LoanItemDTO(TypeLoan.CONSIGMENT.name(), TypeLoan.CONSIGMENT.getInterest_rate()));
+            loanOptionsAprove.add(new LoanItemDTO(LoanType.CONSIGMENT.name(), LoanType.CONSIGMENT.getInterest_rate()));
         }
         if (locationIsSP && age.compareTo(30) <= 0){
-            loanOptionsAprove.add(new LoanItemDTO(TypeLoan.GUARANTEED.name(), TypeLoan.GUARANTEED.getInterest_rate()));
+            loanOptionsAprove.add(new LoanItemDTO(LoanType.GUARANTEED.name(), LoanType.GUARANTEED.getInterest_rate()));
         }
         if(loanOptionsAprove.isEmpty()) {
-            throw new LoanDefaultIncome("Sem emprestimos por enquanto");
+            throw new NoEligibleLoansException("Sem emprestimos por enquanto");
         }
 
         return new LoanResponseDTO(client.getName(), loanOptionsAprove);

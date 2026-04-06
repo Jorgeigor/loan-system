@@ -1,9 +1,9 @@
-package com.example.loan_system.service;
+package com.example.loan_system.services;
 
 import com.example.loan_system.dtos.ClientRequestDTO;
 import com.example.loan_system.dtos.ClientResponseDTO;
 import com.example.loan_system.entities.Client;
-import com.example.loan_system.execptions.ClientAlreadyExistsException;
+import com.example.loan_system.exceptions.ClientAlreadyExistsException;
 import com.example.loan_system.repositories.ClientRepository;
 import lombok.RequiredArgsConstructor;
 

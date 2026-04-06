@@ -1,13 +1,13 @@
 package com.example.loan_system.entities;
 
-public enum TypeLoan {
+public enum LoanType {
     PERSONAL(4),
     GUARANTEED(3),
     CONSIGMENT(2);
 
     private final Integer interest_rate;
 
-    TypeLoan(Integer interestRate) {
+    LoanType(Integer interestRate) {
         interest_rate = interestRate;
     }
 

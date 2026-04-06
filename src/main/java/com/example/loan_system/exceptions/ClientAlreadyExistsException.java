@@ -1,4 +1,4 @@
-package com.example.loan_system.execptions;
+package com.example.loan_system.exceptions;
 
 public class ClientAlreadyExistsException extends RuntimeException {
     public ClientAlreadyExistsException(String message) {
