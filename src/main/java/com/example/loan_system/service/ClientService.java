@@ -3,17 +3,22 @@ package com.example.loan_system.service;
 import com.example.loan_system.dtos.ClientRequestDTO;
 import com.example.loan_system.dtos.ClientResponseDTO;
 import com.example.loan_system.entities.Client;
+import com.example.loan_system.execptions.ClientAlreadyExistsException;
 import com.example.loan_system.repositories.ClientRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ClientService {
     private final ClientRepository clientRepository;
 
+
     public ClientResponseDTO registerCLientOnSystem(ClientRequestDTO clientRequestDTO){
+        this.verifyClientSubscription(clientRequestDTO.cpf());
         Client client = new Client();
         client.setName(clientRequestDTO.name());
         client.setAge(clientRequestDTO.age());
@@ -23,5 +28,10 @@ public class ClientService {
 
         this.clientRepository.save(client);
         return new ClientResponseDTO(client);
+    }
+
+    private void verifyClientSubscription(String cpf){
+        Optional<Client> isClientRegistered = this.clientRepository.findByCpf(cpf);
+        if(isClientRegistered.isPresent()) throw new ClientAlreadyExistsException("Você já consultou suas opções de emprestimo");
     }
 }

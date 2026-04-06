@@ -1,6 +1,8 @@
 package com.example.loan_system.config;
 
+import com.example.loan_system.execptions.ClientAlreadyExistsException;
 import com.example.loan_system.execptions.LoanDefaultIncome;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,5 +12,9 @@ public class ExceptionEnityHandler {
     @ExceptionHandler(LoanDefaultIncome.class)
     public ResponseEntity handleIncomeDefault(LoanDefaultIncome exception){
         return ResponseEntity.badRequest().body(exception.getMessage());
+    }
+    @ExceptionHandler(ClientAlreadyExistsException.class)
+    public ResponseEntity handleClientAlreadyExists(ClientAlreadyExistsException clientAlreadyExistsException){
+        return ResponseEntity.badRequest().body(clientAlreadyExistsException.getMessage());
     }
 }
