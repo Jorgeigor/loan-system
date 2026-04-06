@@ -70,7 +70,6 @@ Avalia o perfil do cliente pelo ID e retorna os empréstimos pré-aprovados.
 
 * **Respostas de Erro:**
     * `400 Bad Request`: Caso o cliente não se encaixe em nenhuma regra de empréstimo. Retorna a mensagem: "Sem emprestimos por enquanto".
-    * `404 Not Found`: Caso o ID informado não exista no banco de dados. Retorna a mensagem: "Cliente não encontrado".
 
 ---
 
